@@ -22,75 +22,75 @@ class Game
 
     public function getGameStat(TeamSeason $teamSeason)
     {
-    	if ($this->_gameStat === null) {
-    	    $this->_gameStat = new GameStat($this, $teamSeason);
-    	}
+        if ($this->_gameStat === null) {
+            $this->_gameStat = new GameStat($this, $teamSeason);
+        }
 
-    	$this->_gameStat->setTeamSeason($teamSeason);
-    	return $this->_gameStat;
+        $this->_gameStat->setTeamSeason($teamSeason);
+        return $this->_gameStat;
     }
 
-	public function getNumber()
+    public function getNumber()
     {
         return $this->_number;
     }
 
-	public function setNumber($number)
+    public function setNumber($number)
     {
         $this->_number = $number;
         return $this;
     }
 
-	public function getDate()
+    public function getDate()
     {
         return $this->_date;
     }
 
-	public function setDate($date)
+    public function setDate($date)
     {
         $this->_date = is_numeric($date) ? $date : strtotime($date);
         return $this;
     }
 
-	public function getHomeTeam()
+    public function getHomeTeam()
     {
         return $this->_homeTeam;
     }
 
-	public function setHomeTeam(Team $team)
+    public function setHomeTeam(Team $team)
     {
         $this->_homeTeam = $team;
         return $this;
     }
 
-	public function getHomeTeamScore()
+    public function getHomeTeamScore()
     {
         return $this->_homeTeamScore;
     }
 
-	public function setHomeTeamScore($score)
+    public function setHomeTeamScore($score)
     {
         $this->_homeTeamScore = (int) $score;
         return $this;
     }
 
-	public function getGuestTeam()
+    public function getGuestTeam()
     {
         return $this->_guestTeam;
     }
 
-	public function setGuestTeam(Team $team)
+    public function setGuestTeam(Team $team)
     {
         $this->_guestTeam = $team;
         return $this;
     }
 
-	public function getGuestTeamScore()
+    public function getGuestTeamScore()
     {
         return $this->_guestTeamScore;
     }
 
-	public function setGuestTeamScore($score)
+    public function setGuestTeamScore($score)
     {
         $this->_guestTeamScore = (int) $score;
         return $this;
