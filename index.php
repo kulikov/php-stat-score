@@ -51,7 +51,7 @@ $dataLoader->addCompleteHandler(
 
 
 /**
- * Загрузка данных будет проходить мультипроцесорно — конфигурим тред менеджер
+ * Загрузка данных будет проходить мультипроцессорно — конфигурим тред менеджер
  */
 $threadManager = ThreadManager::factory(array(
     'scriptPath' => dirname(__FILE__) . '/worker.php',
