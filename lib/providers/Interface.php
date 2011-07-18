@@ -3,7 +3,7 @@
 interface ProviderInterface
 {
     /**
-     * Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ СѓСЂР»РѕРІ СЃ С‚Р°Р±РёР»С†РµР№ РїРѕ РєРѕРЅРєСЂРµС‚РЅРѕР№ РєРѕРјР°РЅРґРµ
+     * Возвращает массив урлов с табилцей по конкретной команде
      *
      * @param $requestUrl string
      * @return array
@@ -11,7 +11,7 @@ interface ProviderInterface
     public function getTeamTableLinks($requestUrl);
 
     /**
-     * Р’РѕР·РІСЂР°С‰Р°РµС‚ РІСЃРµ РґР°РЅРЅС‹Рµ РїРѕ РІСЃРµРј РёРіСЂР°Рј СѓРєР°Р·Р°РЅРЅРѕР№ РєРѕРјР°РЅРґС‹
+     * Возвращает все данные по всем играм указанной команды
      *
      * @param $requestUrl string
      * @return array

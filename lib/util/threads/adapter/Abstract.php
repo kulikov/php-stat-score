@@ -8,7 +8,7 @@ abstract class ThreadAdapterAbstract implements ThreadAdapterInterface
     {
         $response = '';
         if (($response = fread($thread, 64)) !== '' || feof($thread)) {
-            // СЃС‡РёС‚С‹РІР°РµРј РѕС‚РІРµС‚ РґРѕ РєРѕРЅС†Р°
+            // считываем ответ до конца
             while (!feof($thread)) {
                 $response .= fread($thread, 1024);
             }

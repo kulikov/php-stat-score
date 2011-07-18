@@ -54,62 +54,62 @@ class StatisticsRowBuilder
 
     private function _createNumber(Game $game, GameStat $gameStat)
     {
-        return array('value' => $game->getNumber(), 'title' => 'â„– Ð¢ÑƒÑ€Ð°', 'style' => self::DATA_CELL_STYLE);
+        return array('value' => $game->getNumber(), 'title' => '¹ Òóðà', 'style' => self::DATA_CELL_STYLE);
     }
 
     private function _createDate(Game $game, GameStat $gameStat)
     {
-        return array('value' => date('d.m.Y', $game->getDate()), 'title' => 'Ð”Ð°Ñ‚Ð°', 'style' => self::DATA_CELL_STYLE);
+        return array('value' => date('d.m.Y', $game->getDate()), 'title' => 'Äàòà', 'style' => self::DATA_CELL_STYLE);
     }
 
     private function _createHomeTeam(Game $game, GameStat $gameStat)
     {
-        return array('value' => $game->getHomeTeam()->getName(), 'title' => 'Ð¥Ð¾Ð·ÑÐµÐ²Ð°', 'style' => self::DATA_CELL_STYLE . ($gameStat->getTeamSeason()->getTeam() === $game->getHomeTeam() ? 'font-weight: bold;' : ''));
+        return array('value' => $game->getHomeTeam()->getName(), 'title' => 'Õîçÿåâà', 'style' => self::DATA_CELL_STYLE . ($gameStat->getTeamSeason()->getTeam() === $game->getHomeTeam() ? 'font-weight: bold;' : ''));
     }
 
     private function _createGuestTeam(Game $game, GameStat $gameStat)
     {
-    	return array('value' => $game->getGuestTeam()->getName(), 'title' => 'Ð“Ð¾ÑÑ‚Ð¸', 'style' => self::DATA_CELL_STYLE . ($gameStat->getTeamSeason()->getTeam() === $game->getGuestTeam() ? 'font-weight: bold;' : ''));
+    	return array('value' => $game->getGuestTeam()->getName(), 'title' => 'Ãîñòè', 'style' => self::DATA_CELL_STYLE . ($gameStat->getTeamSeason()->getTeam() === $game->getGuestTeam() ? 'font-weight: bold;' : ''));
     }
 
     private function _createScore(Game $game, GameStat $gameStat)
     {
-    	return array('value' => $game->getHomeTeamScore() .' &times; '. $game->getGuestTeamScore(), 'title' => 'Ð¡Ñ‡ÐµÑ‚', 'style' => self::DATA_CELL_STYLE .'color:'. ($gameStat->isWin() ? 'green' : ($gameStat->isLost() ? 'red' : 'blue')) .';');
+    	return array('value' => $game->getHomeTeamScore() .' &times; '. $game->getGuestTeamScore(), 'title' => 'Ñ÷åò', 'style' => self::DATA_CELL_STYLE .'color:'. ($gameStat->isWin() ? 'green' : ($gameStat->isLost() ? 'red' : 'blue')) .';');
     }
 
     private function _createPositionNumber(Game $game, GameStat $gameStat)
     {
-    	return array('value' => $gameStat->getTeamSeason()->getPositionNumber(), 'title' => 'ÐŸÐ¾Ð·Ð¸Ñ†Ð¸Ñ');
+    	return array('value' => $gameStat->getTeamSeason()->getPositionNumber(), 'title' => 'Ïîçèöèÿ');
     }
 
     private function _createYears(Game $game, GameStat $gameStat)
     {
-    	return array('value' => join('/', $gameStat->getTeamSeason()->getYears()), 'title' => 'Ð“Ð¾Ð´Ð°');
+    	return array('value' => join('/', $gameStat->getTeamSeason()->getYears()), 'title' => 'Ãîäà');
     }
 
     private function _createHomeTeamScore(Game $game, GameStat $gameStat)
     {
-    	return array('value' => $game->getHomeTeamScore(), 'title' => 'Ð“Ð¾Ð»Ñ‹ Ñ…Ð¾Ð·ÑÐµÐ²', 'style' => 'width: 45px;');
+    	return array('value' => $game->getHomeTeamScore(), 'title' => 'Ãîëû õîçÿåâ', 'style' => 'width: 45px;');
     }
 
     private function _createGuestTeamScore(Game $game, GameStat $gameStat)
     {
-    	return array('value' => $game->getGuestTeamScore(), 'title' => 'Ð“Ð¾Ð»Ñ‹ Ð³Ð¾ÑÑ‚ÐµÐ¹', 'style' => 'width: 45px;');
+    	return array('value' => $game->getGuestTeamScore(), 'title' => 'Ãîëû ãîñòåé', 'style' => 'width: 45px;');
     }
 
     private function _createScoreDiff(Game $game, GameStat $gameStat)
     {
-    	return array('value' => $gameStat->getScoreDiff(), 'title' => "ÐŸÑ€Ð¾ÑÑ‚Ð¾ Ñ€Ð°Ð·Ð½Ð¸Ñ†Ð° Ð¼ÑÑ‡ÐµÐ¹", 'style' => 'background: '. $this->_getColorByValue($gameStat->getScoreDiff()) .'; width: 60px;');
+    	return array('value' => $gameStat->getScoreDiff(), 'title' => "Ïðîñòî ðàçíèöà ìÿ÷åé", 'style' => 'background: '. $this->_getColorByValue($gameStat->getScoreDiff()) .'; width: 60px;');
     }
 
     private function _createScoreDiffAbs(Game $game, GameStat $gameStat)
     {
-    	return array('value' => $gameStat->getScoreDiffAbs(), 'title' => "Ð Ð°Ð·Ð½Ð¸Ñ†Ð° Ð¼ÑÑ‡ÐµÐ¹ Ð¿Ð¾ Ð¼Ð¾Ð´ÑƒÐ»ÑŽ", 'style' => 'background: '. $this->_getColorByValue($gameStat->getScoreDiffAbs()) .'; width: 60px;');
+    	return array('value' => $gameStat->getScoreDiffAbs(), 'title' => "Ðàçíèöà ìÿ÷åé ïî ìîäóëþ", 'style' => 'background: '. $this->_getColorByValue($gameStat->getScoreDiffAbs()) .'; width: 60px;');
     }
 
     private function _createResult(Game $game, GameStat $gameStat)
     {
-    	return array('value' => ($gameStat->isWin() ? 'Ð²Ñ‹Ð¸Ð³Ñ€Ð°Ð»Ð¸' : ($gameStat->isLost() ? 'Ð¿Ñ€Ð¾Ð¸Ð³Ñ€Ð°Ð»Ð¸' : 'Ð½Ð¸Ñ‡ÑŒÑ')), 'style' => 'background: '. ($gameStat->isWin() ? 'lime' : ($gameStat->isLost() ? 'red' : '#3377FF')) .';');
+    	return array('value' => ($gameStat->isWin() ? 'âûèãðàëè' : ($gameStat->isLost() ? 'ïðîèãðàëè' : 'íè÷üÿ')), 'style' => 'background: '. ($gameStat->isWin() ? 'lime' : ($gameStat->isLost() ? 'red' : '#3377FF')) .';');
     }
 
     private function _createTotalMore15(Game $game, GameStat $gameStat)
@@ -145,20 +145,20 @@ class StatisticsRowBuilder
     private function _createEvenOdd(Game $game, GameStat $gameStat)
     {
     	$even = $gameStat->isEvenTotal();
-        return array('value' => ($even ? 'Ñ‡ÐµÑ‚' : 'Ð½ÐµÑ‡ÐµÑ‚'), 'title' => 'Ð§ÐµÑ‚/Ð½ÐµÑ‡ÐµÑ‚', 'style' => 'background: '. ($even ? 'magenta' : 'aqua') .';');
+        return array('value' => ($even ? '÷åò' : 'íå÷åò'), 'title' => '×åò/íå÷åò', 'style' => 'background: '. ($even ? 'magenta' : 'aqua') .';');
     }
 
     private function _createTotal25AndEvenOdd(Game $game, GameStat $gameStat)
     {
         $totalMore = $gameStat->totalMore(2.5);
     	$even      = $gameStat->isEvenTotal();
-        return array('value' => ($totalMore ? 'Ð¢Ð‘' : 'Ð¢Ðœ').'+'.($even ? 'Ñ‡ÐµÑ‚' : 'Ð½ÐµÑ‡ÐµÑ‚'), 'title' => 'Ð¢Ð¾Ñ‚Ð°Ð» Ð¸ Ñ‡ÐµÑ‚/Ð½ÐµÑ‡ÐµÑ‚', 'style' => 'background: '. ($totalMore && $even ? 'lime' : (!$totalMore && $even ? 'magenta' : ($totalMore && !$even ? 'aqua' : 'red'))) .';');
+        return array('value' => ($totalMore ? 'ÒÁ' : 'ÒÌ').'+'.($even ? '÷åò' : 'íå÷åò'), 'title' => 'Òîòàë è ÷åò/íå÷åò', 'style' => 'background: '. ($totalMore && $even ? 'lime' : (!$totalMore && $even ? 'magenta' : ($totalMore && !$even ? 'aqua' : 'red'))) .';');
     }
 
     private function _createTotal(Game $game, GameStat $gameStat)
     {
         $total = $gameStat->getTotal();
-        return array('value' => ($total < 2 ? '0&ndash;1' : ($total < 4 ? '2&ndash;3' : '4 Ð¸ Ð±Ð¾Ð»ÐµÐµ')), 'title' => 'Ð¡ÑƒÐ¼Ð¼Ð° Ð¼ÑÑ‡ÐµÐ¹', 'style' => 'background: '. ($total < 2 ? 'aqua' : ($total < 4 ? 'lime' : 'red')) .';');
+        return array('value' => ($total < 2 ? '0&ndash;1' : ($total < 4 ? '2&ndash;3' : '4 è áîëåå')), 'title' => 'Ñóììà ìÿ÷åé', 'style' => 'background: '. ($total < 2 ? 'aqua' : ($total < 4 ? 'lime' : 'red')) .';');
     }
 
     private function _createEvenOddAndResult(Game $game, GameStat $gameStat)
@@ -166,14 +166,14 @@ class StatisticsRowBuilder
         $win  = $gameStat->isWin();
         $lost = $gameStat->isLost();
         $even = $gameStat->isEvenTotal();
-        return array('value' => ($even ? 'Ð§ÐµÑ‚' : 'ÐÐµÑ‡ÐµÑ‚').'+'.($win ? 'Ð¿Ð¾Ð±ÐµÐ´Ð°' : ($lost ? 'Ð¿Ð¾Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ' : 'Ð½Ð¸Ñ‡ÑŒÑ')), 'title' => 'Ð§ÐµÑ‚/Ð½ÐµÑ‡ÐµÑ‚ Ð¸ Ð¸ÑÑ…Ð¾Ð´', 'style' => 'background: '. ($even && $win ? 'magenta' : (!$even && $win ? 'lime' : (!$even && $lost ? 'aqua' : ($even && $lost ? 'red' : '#3377FF')))) .';');
+        return array('value' => ($even ? '×åò' : 'Íå÷åò').'+'.($win ? 'ïîáåäà' : ($lost ? 'ïîðàæåíèå' : 'íè÷üÿ')), 'title' => '×åò/íå÷åò è èñõîä', 'style' => 'background: '. ($even && $win ? 'magenta' : (!$even && $win ? 'lime' : (!$even && $lost ? 'aqua' : ($even && $lost ? 'red' : '#3377FF')))) .';');
     }
 
     private function _createAllTeamScored(Game $game, GameStat $gameStat)
     {
         $v1 = $game->getGuestTeamScore();
         $v2 = $game->getHomeTeamScore();
-        return array('value' => ($v1 && $v2 ? 'ÐžÐ±Ðµ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð·Ð°Ð±Ð¸Ð»Ð¸' : ($v1 || $v2 ? 'Ð—Ð°Ð±Ð¸Ð»Ð° Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¾Ð´Ð½Ð°' : 'ÐÐ¸ÐºÑ‚Ð¾ Ð½Ðµ Ð·Ð°Ð±Ð¸Ð»')), 'title' => 'ÐžÐ±Ðµ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð·Ð°Ð±Ð¸Ð»Ð¸', 'style' => 'background: '. ($v1 && $v2 ? 'lime' : ($v1 || $v2 ? 'red' : '#3377FF')) .';');
+        return array('value' => ($v1 && $v2 ? 'Îáå êîìàíäû çàáèëè' : ($v1 || $v2 ? 'Çàáèëà òîëüêî îäíà' : 'Íèêòî íå çàáèë')), 'title' => 'Îáå êîìàíäû çàáèëè', 'style' => 'background: '. ($v1 && $v2 ? 'lime' : ($v1 || $v2 ? 'red' : '#3377FF')) .';');
     }
 
     private function _createTeamScoredAndTotal25(Game $game, GameStat $gameStat)
@@ -181,7 +181,7 @@ class StatisticsRowBuilder
         $v1    = $game->getGuestTeamScore();
         $v2    = $game->getHomeTeamScore();
         $total = $gameStat->totalMore(2.5);
-        return array('value' => ($v1 && $v2 ? 'ÐžÐ±Ðµ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð·Ð°Ð±Ð¸Ð»Ð¸' : ($v1 || $v2 ? 'Ð—Ð°Ð±Ð¸Ð»Ð° Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¾Ð´Ð½Ð°' : 'ÐÐ¸ÐºÑ‚Ð¾ Ð½Ðµ Ð·Ð°Ð±Ð¸Ð»')) . ($v1 || $v2 ? ' + ' . ($total ? 'Ð¢Ð‘' : 'Ð¢Ðœ') : ''), 'title' => 'ÐšÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð·Ð°Ð±Ð¸Ð»Ð¸ + Ñ‚Ð¾Ñ‚Ð°Ð» 2,5', 'style' => 'background: '. ($v1 && $v2 ? 'lime' : ($v1 || $v2 ? 'red' : '#3377FF')) .';');
+        return array('value' => ($v1 && $v2 ? 'Îáå êîìàíäû çàáèëè' : ($v1 || $v2 ? 'Çàáèëà òîëüêî îäíà' : 'Íèêòî íå çàáèë')) . ($v1 || $v2 ? ' + ' . ($total ? 'ÒÁ' : 'ÒÌ') : ''), 'title' => 'Êîìàíäû çàáèëè + òîòàë 2,5', 'style' => 'background: '. ($v1 && $v2 ? 'lime' : ($v1 || $v2 ? 'red' : '#3377FF')) .';');
     }
 
     private function _createTeamScoredAndTotal35(Game $game, GameStat $gameStat)
@@ -189,7 +189,7 @@ class StatisticsRowBuilder
         $v1    = $game->getGuestTeamScore();
         $v2    = $game->getHomeTeamScore();
         $total = $gameStat->totalMore(3.5);
-        return array('value' => ($v1 && $v2 ? 'ÐžÐ±Ðµ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð·Ð°Ð±Ð¸Ð»Ð¸' : ($v1 || $v2 ? 'Ð—Ð°Ð±Ð¸Ð»Ð° Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¾Ð´Ð½Ð°' : 'ÐÐ¸ÐºÑ‚Ð¾ Ð½Ðµ Ð·Ð°Ð±Ð¸Ð»')) . ($v1 || $v2 ? ' + ' . ($total ? 'Ð¢Ð‘' : 'Ð¢Ðœ') : ''), 'title' => 'ÐšÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð·Ð°Ð±Ð¸Ð»Ð¸ + Ñ‚Ð¾Ñ‚Ð°Ð» 3,5', 'style' => 'background: '. ($v1 && $v2 ? 'lime' : ($v1 || $v2 ? 'red' : '#3377FF')) .';');
+        return array('value' => ($v1 && $v2 ? 'Îáå êîìàíäû çàáèëè' : ($v1 || $v2 ? 'Çàáèëà òîëüêî îäíà' : 'Íèêòî íå çàáèë')) . ($v1 || $v2 ? ' + ' . ($total ? 'ÒÁ' : 'ÒÌ') : ''), 'title' => 'Êîìàíäû çàáèëè + òîòàë 3,5', 'style' => 'background: '. ($v1 && $v2 ? 'lime' : ($v1 || $v2 ? 'red' : '#3377FF')) .';');
     }
 
     private function _createTotal1(Game $game, GameStat $gameStat)
@@ -236,13 +236,13 @@ class StatisticsRowBuilder
     private function _getTotal(GameStat $gameStat, $index)
     {
     	$v = $gameStat->totalMore($index);
-        return array('value' => ($v ? 'Ñ‚Ð¾Ñ‚Ð°Ð» Ð±Ð¾Ð»ÑŒÑˆÐµ' : 'Ñ‚Ð¾Ñ‚Ð°Ð» Ð¼ÐµÐ½ÑŒÑˆÐµ'), 'title' => 'Ð¢Ð¾Ñ‚Ð°Ð» '.$index, 'style' => 'background: '. ($v ? 'aqua' : 'magenta') .';');
+        return array('value' => ($v ? 'òîòàë áîëüøå' : 'òîòàë ìåíüøå'), 'title' => 'Òîòàë '.$index, 'style' => 'background: '. ($v ? 'aqua' : 'magenta') .';');
     }
 
     private function _getTotalEqual(GameStat $gameStat, $value)
     {
         $v = $gameStat->getTotal() == $value;
-        return array('value' => $v ? 'Ð”Ð°' : 'ÐÐµÑ‚', 'title' => 'Ð¢Ð¾Ñ‚Ð°Ð» = ' . $value, 'style' => 'background: '. ($v ? 'lime' : 'red') .';');
+        return array('value' => $v ? 'Äà' : 'Íåò', 'title' => 'Òîòàë = ' . $value, 'style' => 'background: '. ($v ? 'lime' : 'red') .';');
     }
 
 

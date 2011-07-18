@@ -27,7 +27,7 @@ class XscoresProvider extends AbstractProvider
     	    $gameType = $matches[1];
     	    $resultId = $matches[2];
     	} else {
-    	    throw new Exception('Xscores: ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ð¸ Ñ‚Ð¸Ð¿Ð° Ð¸Ð³Ñ€Ñ‹. Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ ÑƒÐºÐ°Ð·Ð°Ð½ Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ ÑƒÑ€Ð»');
+    	    throw new Exception('Xscores: Îøèáêà ïðè îïðåäåëåíèè òèïà èãðû. Âîçìîæíî óêàçàí íåâåðíûé óðë');
     	}
 
     	$html = $this->_requestUrl($requestUrl, array(
@@ -39,7 +39,7 @@ class XscoresProvider extends AbstractProvider
 
         $matches = array();
         if (!preg_match_all('/teamData\(\'([^\']+)\'\)/', $html, $matches)) {
-            throw new Exception('Xscores: ÐžÑˆÐ°Ð±ÐºÐ° Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ñ ÑÐ¿Ð¸ÑÐºÐ° ÐºÐ¾Ð¼Ð°Ð½Ð´');
+            throw new Exception('Xscores: Îøàáêà ïîëó÷åíèÿ ñïèñêà êîìàíä');
         }
 
         $output = array();
@@ -56,7 +56,7 @@ class XscoresProvider extends AbstractProvider
         if (preg_match('#/(\w+)/Results\.jsp#', $requestUrl, $matches)) {
             $gameType = strtolower($matches[1]);
         } else {
-            throw new Exception('Xscores: ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð¸Ð¸ Ñ‚Ð¸Ð¿Ð° Ð¸Ð³Ñ€Ñ‹. Ð’Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ ÑƒÐºÐ°Ð·Ð°Ð½ Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ ÑƒÑ€Ð»');
+            throw new Exception('Xscores: Îøèáêà ïðè îïðåäåëåíèè òèïà èãðû. Âîçìîæíî óêàçàí íåâåðíûé óðë');
         }
 
         $cellsKey = isset($this->_cells[$gameType]) ? $this->_cells[$gameType] : $this->_cells['default'];

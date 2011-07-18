@@ -18,7 +18,7 @@ class DisplayXlsTableStrategy implements ProcessorInterface
     public function process(Championship $championship)
     {
 
-        /* СЃСѓРјРјС‹ РїРѕ СЃС‚СЂРѕРєР°Рј. РґРѕСЃС‚Р°РµРј РёР· РЅРѕРјРµСЂР° РёРЅС‚РµСЂРµСЃСѓСЋС‰РёС… РЅР°СЃ РєРѕРјР°РЅРґ РёР· СЂРµРєРІРµСЃС‚Р° */
+        /* суммы по строкам. достаем из номера интересующих нас команд из реквеста */
         $summaryPosNumbers = array();
         $summaryPosString  = '';
         $summaryTeams      = array();
@@ -69,29 +69,29 @@ class DisplayXlsTableStrategy implements ProcessorInterface
 
         if (in_array(1, $printedTable)) {
             $this->_printTable($teamStat);
-            print '<tr><td>newSheet</td><td colspan="10">Р’РёР·СѓР°Р»СЊС‰РёРЅР° РѕР±С‰Р°СЏ</td></tr>';
+            print '<tr><td>newSheet</td><td colspan="10">Визуальщина общая</td></tr>';
 
             $this->_printTable($teamStatHome);
-            print '<tr><td>newSheet</td><td colspan="10">Р’РёР·СѓР°Р»СЊС‰РёРЅР° РґРѕРјР°</td></tr>';
+            print '<tr><td>newSheet</td><td colspan="10">Визуальщина дома</td></tr>';
 
             $this->_printTable($teamStatGuest);
-            print '<tr><td>newSheet</td><td colspan="10">Р’РёР·СѓР°Р»СЊС‰РёРЅР° РіРѕСЃС‚Рё</td></tr>';
+            print '<tr><td>newSheet</td><td colspan="10">Визуальщина гости</td></tr>';
         }
 
         if (in_array(3, $printedTable)) {
             $this->_printTable($seriesStat);
-            print '<tr><td>newSheet</td><td colspan="10">Р’СЃРµ СЃРµСЂРёРё</td></tr>';
+            print '<tr><td>newSheet</td><td colspan="10">Все серии</td></tr>';
 
             print '<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>';
             $this->_printTable($this->_reversStat($seriesStat), false);
-            print '<tr><td>newSheet</td><td colspan="10">Р’СЃРµ СЃРµСЂРёРё РІ СЂР°Р·РІРµСЂРЅСѓС‚РѕРј РІРёРґРµ</td></tr>';
+            print '<tr><td>newSheet</td><td colspan="10">Все серии в развернутом виде</td></tr>';
         }
 
         if (in_array(2, $printedTable)) {
             $summaryTeamsStats = $this->_prepareSummarySeriesStats($summaryTeams, $summaryPosString);
             array_unshift($summaryTeamsStats, null);
             $this->_printTable($summaryTeamsStats);
-            print '<tr><td>newSheet</td><td colspan="10">РЎСѓРјРјР°СЂРЅР°СЏ СЃС‚Р°С‚РёСЃС‚РёРєР°</td></tr>';
+            print '<tr><td>newSheet</td><td colspan="10">Суммарная статистика</td></tr>';
         }
 
         print '</table>';
@@ -189,11 +189,11 @@ class DisplayXlsTableStrategy implements ProcessorInterface
             $posNumbers[] = $season->getPositionNumber();
         }
 
-        $years      = new TableCell(join('/', array_unique($years)), 'РЎРµР·РѕРЅ');
-        $posNumbers = new TableCell(str_replace('-', 'вЂ“', $summaryPosString ? $summaryPosString : (min($posNumbers) .'-'. max($posNumbers))), 'РњРµСЃС‚Рѕ');
-        $main       = new TableCell('РѕР±С‰РёР№', 'Р Р°Р·СЂРµР·', 1);
-        $home       = new TableCell('РґРѕРјР°', 'Р Р°Р·СЂРµР·', 2);
-        $guest      = new TableCell('РіРѕСЃС‚Рё', 'Р Р°Р·СЂРµР·', 3);
+        $years      = new TableCell(join('/', array_unique($years)), 'Сезон');
+        $posNumbers = new TableCell(str_replace('-', '–', $summaryPosString ? $summaryPosString : (min($posNumbers) .'-'. max($posNumbers))), 'Место');
+        $main       = new TableCell('общий', 'Разрез', 1);
+        $home       = new TableCell('дома', 'Разрез', 2);
+        $guest      = new TableCell('гости', 'Разрез', 3);
 
         $output = array();
         foreach ($summarySeries as $title => $values) {
@@ -202,8 +202,8 @@ class DisplayXlsTableStrategy implements ProcessorInterface
             $output[$title][-4] = $years;
             $output[$title][-3] = $posNumbers;
             $output[$title][-2] = $_type == Game::HOME ? $home : ($_type == Game::GUEST ? $guest : $main);
-            $output[$title][-1] = new TableCell($seriesCalculator->getDescription($_title), 'Р’РёРґ Р°РЅР°Р»РёС‚РёРєРё');
-            $output[$title][0]  = new TableCell(array_sum($values), 'РЎСѓРјРјР° РїРѕ СЃС‚СЂРѕРєРµ', 'background: #99CCFF;');
+            $output[$title][-1] = new TableCell($seriesCalculator->getDescription($_title), 'Вид аналитики');
+            $output[$title][0]  = new TableCell(array_sum($values), 'Сумма по строке', 'background: #99CCFF;');
 
             foreach ($values as $num => $value) {
                 $output[$title][$num] = new TableCell($value, $num);
@@ -246,7 +246,7 @@ class DisplayXlsTableStrategy implements ProcessorInterface
                 $refloat[-4][$title] = new TableCell($teamSeason->getTeam()->getName(), '&nbsp;', $_style);
                 $refloat[-3][$title] = new TableCell(join('/', $teamSeason->getYears()), null, $_style);
                 $refloat[-2][$title] = new TableCell($teamSeason->getPositionNumber(), null, $_style);
-                $refloat[-1][$title] = new TableCell($_type == Game::HOME ? 'РґРѕРјР°' : ($_type == Game::GUEST ? 'РіРѕСЃС‚Рё' : 'РѕР±С‰РёР№'), null, $_style);
+                $refloat[-1][$title] = new TableCell($_type == Game::HOME ? 'дома' : ($_type == Game::GUEST ? 'гости' : 'общий'), null, $_style);
                 $refloat[0][$title]  = new TableCell($seriesCalculator->getDescription($_title), null, 'background: #FFFFBB;');
             } else {
                 for ($i = -4; $i <= $maxRows; $i++) {

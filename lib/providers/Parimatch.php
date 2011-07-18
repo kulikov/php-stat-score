@@ -33,7 +33,7 @@ class ParimatchProvider extends AbstractProvider
         $tables = preg_split('/<table/i', $html);
         $rows   = preg_split('/<tr/i', $tables[2]);
         $output = array(
-            'team'  => preg_replace('/^.+>РњР°С‚С‡Рё РєРѕРјР°РЅРґС‹ ([^<]+).*$/i', '$1', $rows[1]),
+            'team'  => preg_replace('/^.+>Матчи команды ([^<]+).*$/i', '$1', $rows[1]),
             'games' => array(),
         );
 

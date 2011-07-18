@@ -5,82 +5,82 @@ class GameSeriesCalculator
     private static $_instance = null;
 
     private $_descriptions = array(
-        'SeriesNonDraw'             => 'РЎРµСЂРёРё Р±РµР· РЅРёС‡СЊРёС…',
-        'SeriesDraw'                => 'СЃРµСЂРёРё РЅРёС‡СЊРё РїРѕРґСЂСЏРґ',
-        'SeriesWin'                 => 'С‚РѕР»СЊРєРѕ РїРѕР±РµРґС‹ РїРѕРґСЂСЏРґ',
-        'SeriesNonLost'             => 'РЅРµ РїСЂРѕРёРіСЂР°С‚СЊ РїРѕРґСЂСЏРґ',
-        'SeriesNonWin'              => 'РЅРµ РІС‹РёРіСЂР°С‚СЊ РїРѕРґСЂСЏРґ',
-        'SeriesLost'                => 'РїСЂРѕРёРіСЂР°С‚СЊ РїРѕРґСЂСЏРґ',
-        'SeriesTotalMore15'         => 'С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 1.5',
-        'SeriesTotalLess15'         => 'С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 1.5',
-        'RotationTotal15'           => 'С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 1.5',
-        'SeriesTotalMore25'         => 'С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 2.5',
-        'SeriesTotalLess25'         => 'С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 2.5',
-        'RotationTotal25'           => 'С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 2.5',
-        'SeriesTotalMore35'         => 'С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 3.5',
-        'SeriesTotalLess35'         => 'С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 3.5',
-        'RotationTotal35'           => 'С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 3.5',
-        'SeriesTotalMore45'         => 'С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 4.5',
-        'SeriesTotalLess45'         => 'С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 4.5',
-        'RotationTotal45'           => 'С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 4.5',
-        'SeriesTotalMore55'         => 'С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 5.5',
-        'SeriesTotalLess55'         => 'С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 5.5',
-        'RotationTotal55'           => 'С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 5.5',
-        'SeriesTotalMore65'         => 'С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 6.5',
-        'SeriesTotalLess65'         => 'С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 6.5',
-        'RotationTotal65'           => 'С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 6.5',
-        'SeriesEven'                => 'С‡РµС‚ РїРѕРґСЂСЏРґ',
-        'SeriesOdd'                 => 'РЅРµС‡РµС‚ РїРѕРґСЂСЏРґ',
-        'RotationEvenOdd'           => 'С‡РµС‚/РЅРµС‡РµС‚ С‡РµСЂРµРґРѕРІР°РЅРёРµ',
-        'RotationDrawResult'        => 'РЅРёС‡СЊСЏ/СЂРµР·СѓР»СЊС‚Р°С‚ С‡РµСЂРµРґРѕРІР°РЅРёРµ',
-        'RotationDrawWin'           => 'РЅРёС‡СЊСЏ/РїРѕР±РµРґР° С‡РµСЂРµРґРѕРІР°РЅРёРµ',
-        'RotationDrawLost'          => 'РЅРёС‡СЊСЏ/РїСЂРѕРёРіСЂР°Р»Рё С‡РµСЂРµРґРѕРІР°РЅРёРµ',
-        'SeriesTotalMore25AndEven'  => 'РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ 2,5 Рё С‡РµС‚ РїРѕРґСЂСЏРґ',
-        'SeriesTotalMore25AndOdd'   => 'РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ 2,5 Рё РЅРµС‡РµС‚ РїРѕРґСЂСЏРґ',
-        'SeriesTotalLess25AndEven'  => 'РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ 2,5 Рё С‡РµС‚ РїРѕРґСЂСЏРґ',
-        'SeriesTotalLess25AndOdd'   => 'РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ 2,5 Рё РЅРµС‡РµС‚ РїРѕРґСЂСЏРґ',
-        'SeriesAllTeamScored'       => 'РћР±Рµ Р·Р°Р±РёР»Рё РїРѕРґСЂСЏРґ',
-        'SeriesOneTeamScored'       => 'Р—Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР°',
-        'SeriesNoneTeamScored'      => 'РќРёРєС‚Рѕ РЅРµ Р·Р°Р±РёР»',
-        'SeriesOneOrNoneTeamScored' => 'Р—Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР° РёР»Рё РЅРёРєС‚Рѕ РЅРµ Р·Р°Р±РёР»',
-        'RotationAllOneTeamScored'  => 'Р—Р°Р±РёР»Р° РѕРґРЅР°/РѕР±Рµ С‡РµСЂРµРґРѕРІР°РЅРёРµ',
+        'SeriesNonDraw'             => 'Серии без ничьих',
+        'SeriesDraw'                => 'серии ничьи подряд',
+        'SeriesWin'                 => 'только победы подряд',
+        'SeriesNonLost'             => 'не проиграть подряд',
+        'SeriesNonWin'              => 'не выиграть подряд',
+        'SeriesLost'                => 'проиграть подряд',
+        'SeriesTotalMore15'         => 'тотал больше подряд 1.5',
+        'SeriesTotalLess15'         => 'тотал меньше подряд 1.5',
+        'RotationTotal15'           => 'тотал чередование 1.5',
+        'SeriesTotalMore25'         => 'тотал больше подряд 2.5',
+        'SeriesTotalLess25'         => 'тотал меньше подряд 2.5',
+        'RotationTotal25'           => 'тотал чередование 2.5',
+        'SeriesTotalMore35'         => 'тотал больше подряд 3.5',
+        'SeriesTotalLess35'         => 'тотал меньше подряд 3.5',
+        'RotationTotal35'           => 'тотал чередование 3.5',
+        'SeriesTotalMore45'         => 'тотал больше подряд 4.5',
+        'SeriesTotalLess45'         => 'тотал меньше подряд 4.5',
+        'RotationTotal45'           => 'тотал чередование 4.5',
+        'SeriesTotalMore55'         => 'тотал больше подряд 5.5',
+        'SeriesTotalLess55'         => 'тотал меньше подряд 5.5',
+        'RotationTotal55'           => 'тотал чередование 5.5',
+        'SeriesTotalMore65'         => 'тотал больше подряд 6.5',
+        'SeriesTotalLess65'         => 'тотал меньше подряд 6.5',
+        'RotationTotal65'           => 'тотал чередование 6.5',
+        'SeriesEven'                => 'чет подряд',
+        'SeriesOdd'                 => 'нечет подряд',
+        'RotationEvenOdd'           => 'чет/нечет чередование',
+        'RotationDrawResult'        => 'ничья/результат чередование',
+        'RotationDrawWin'           => 'ничья/победа чередование',
+        'RotationDrawLost'          => 'ничья/проиграли чередование',
+        'SeriesTotalMore25AndEven'  => 'Одновременно тотал больше 2,5 и чет подряд',
+        'SeriesTotalMore25AndOdd'   => 'Одновременно тотал больше 2,5 и нечет подряд',
+        'SeriesTotalLess25AndEven'  => 'Одновременно тотал меньше 2,5 и чет подряд',
+        'SeriesTotalLess25AndOdd'   => 'Одновременно тотал меньше 2,5 и нечет подряд',
+        'SeriesAllTeamScored'       => 'Обе забили подряд',
+        'SeriesOneTeamScored'       => 'Забила только одна',
+        'SeriesNoneTeamScored'      => 'Никто не забил',
+        'SeriesOneOrNoneTeamScored' => 'Забила только одна или никто не забил',
+        'RotationAllOneTeamScored'  => 'Забила одна/обе чередование',
 
-        'SeriesAllTeamScoredAndTotalMore25'  => 'РћР±Рµ Р·Р°Р±РёР»Рё + РўР‘ 2,5',
-        'SeriesAllTeamScoredAndTotalLess25'  => 'РћР±Рµ Р·Р°Р±РёР»Рё + РўРњ 2,5',
-        'SeriesOneTeamScoredAndTotalMore25'  => 'Р—Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР° + РўР‘ 2,5',
-        'SeriesOneTeamScoredAndTotalLess25'  => 'Р—Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР° + РўРњ 2,5',
+        'SeriesAllTeamScoredAndTotalMore25'  => 'Обе забили + ТБ 2,5',
+        'SeriesAllTeamScoredAndTotalLess25'  => 'Обе забили + ТМ 2,5',
+        'SeriesOneTeamScoredAndTotalMore25'  => 'Забила только одна + ТБ 2,5',
+        'SeriesOneTeamScoredAndTotalLess25'  => 'Забила только одна + ТМ 2,5',
 
-        'SeriesAllTeamScoredAndTotalMore35'  => 'РћР±Рµ Р·Р°Р±РёР»Рё + РўР‘ 3,5',
-        'SeriesAllTeamScoredAndTotalLess35'  => 'РћР±Рµ Р·Р°Р±РёР»Рё + РўРњ 3,5',
-        'SeriesOneTeamScoredAndTotalMore35'  => 'Р—Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР° + РўР‘ 3,5',
-        'SeriesOneTeamScoredAndTotalLess35'  => 'Р—Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР° + РўРњ 3,5',
+        'SeriesAllTeamScoredAndTotalMore35'  => 'Обе забили + ТБ 3,5',
+        'SeriesAllTeamScoredAndTotalLess35'  => 'Обе забили + ТМ 3,5',
+        'SeriesOneTeamScoredAndTotalMore35'  => 'Забила только одна + ТБ 3,5',
+        'SeriesOneTeamScoredAndTotalLess35'  => 'Забила только одна + ТМ 3,5',
 
 
 
-        'SeriesTotal1'              => 'РўРѕС‚Р°Р» = 1',
-        'SeriesTotal2'              => 'РўРѕС‚Р°Р» = 2',
-        'SeriesTotal3'              => 'РўРѕС‚Р°Р» = 3',
-        'SeriesTotal4'              => 'РўРѕС‚Р°Р» = 4',
-        'SeriesTotal5'              => 'РўРѕС‚Р°Р» = 5',
-        'SeriesTotal6'              => 'РўРѕС‚Р°Р» = 6',
-        'SeriesTotal7'              => 'РўРѕС‚Р°Р» = 7',
-        'SeriesOddAndWin'           => 'РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ РЅРµС‡РµС‚ Рё РїРѕР±РµРґР° РїРѕРґСЂСЏРґ',
-        'SeriesOddAndLost'          => 'РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ РЅРµС‡РµС‚ Рё РїРѕСЂР°Р¶РµРЅРёРµ РїРѕРґСЂСЏРґ',
-        'SeriesEvenAndWin'          => 'РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‡РµС‚ Рё РїРѕР±РµРґР° РїРѕРґСЂСЏРґ',
-        'SeriesEvenAndLost'         => 'РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‡РµС‚ Рё РїРѕСЂР°Р¶РµРЅРёРµ РїРѕРґСЂСЏРґ',
-        'SeriesTotal0Or1'           => 'РЎСѓРјРјР° РјСЏС‡РµР№ 0-1 РїРѕРґСЂСЏРґ',
-        'SeriesTotal2Or3'           => 'РЎСѓРјРјР° РјСЏС‡РµР№ 2-3 РїРѕРґСЂСЏРґ',
-        'SeriesTotal4OrMore'        => 'РЎСѓРјРјР° РјСЏС‡РµР№ 4 Рё Р±РѕР»СЊС€Рµ',
-        'SeriesDiff1'               => 'Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ +1 РїРѕРґСЂСЏРґ',
-        'SeriesDiffMinus1'          => 'Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ -1 РїРѕРґСЂСЏРґ',
-        'SeriesDiff1Abs'            => 'Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ РјРѕРґСѓР»СЊ 1 РїРѕРґСЂСЏРґ',
-        'SeriesDiff2'               => 'Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ +2 РїРѕРґСЂСЏРґ',
-        'SeriesDiffMinus2'          => 'Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ -2 РїРѕРґСЂСЏРґ',
-        'SeriesDiff2Abs'            => 'Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ РјРѕРґСѓР»СЊ 2 РїРѕРґСЂСЏРґ',
-        'SeriesDiff3'               => 'Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ +3 РїРѕРґСЂСЏРґ',
-        'SeriesDiffMinus3'          => 'Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ -3 РїРѕРґСЂСЏРґ',
-        'SeriesDiff3Abs'            => 'Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ РјРѕРґСѓР»СЊ 3 РїРѕРґСЂСЏРґ',
-        'RotationWinLost'           => 'Р§РµСЂРµРґРѕРІР°РЅРёРµ РїРѕР±РµРґР°/РїРѕСЂР°Р¶РµРЅРёРµ',
+        'SeriesTotal1'              => 'Тотал = 1',
+        'SeriesTotal2'              => 'Тотал = 2',
+        'SeriesTotal3'              => 'Тотал = 3',
+        'SeriesTotal4'              => 'Тотал = 4',
+        'SeriesTotal5'              => 'Тотал = 5',
+        'SeriesTotal6'              => 'Тотал = 6',
+        'SeriesTotal7'              => 'Тотал = 7',
+        'SeriesOddAndWin'           => 'Одновременно нечет и победа подряд',
+        'SeriesOddAndLost'          => 'Одновременно нечет и поражение подряд',
+        'SeriesEvenAndWin'          => 'Одновременно чет и победа подряд',
+        'SeriesEvenAndLost'         => 'Одновременно чет и поражение подряд',
+        'SeriesTotal0Or1'           => 'Сумма мячей 0-1 подряд',
+        'SeriesTotal2Or3'           => 'Сумма мячей 2-3 подряд',
+        'SeriesTotal4OrMore'        => 'Сумма мячей 4 и больше',
+        'SeriesDiff1'               => 'Разница мячей +1 подряд',
+        'SeriesDiffMinus1'          => 'Разница мячей -1 подряд',
+        'SeriesDiff1Abs'            => 'Разница мячей модуль 1 подряд',
+        'SeriesDiff2'               => 'Разница мячей +2 подряд',
+        'SeriesDiffMinus2'          => 'Разница мячей -2 подряд',
+        'SeriesDiff2Abs'            => 'Разница мячей модуль 2 подряд',
+        'SeriesDiff3'               => 'Разница мячей +3 подряд',
+        'SeriesDiffMinus3'          => 'Разница мячей -3 подряд',
+        'SeriesDiff3Abs'            => 'Разница мячей модуль 3 подряд',
+        'RotationWinLost'           => 'Чередование победа/поражение',
     );
 
 
@@ -119,7 +119,7 @@ class GameSeriesCalculator
                 if ($isRotation) {
                     $calculate = isset($listValues[$key]) && ($prev = end($listValues[$key])) !== null && $value !== null && $prev !== $value;
                     if ($calculate && empty($counter[$key])) {
-                        $counter[$key] = 1; // СЃРґРІРёРіР°РµРј РІСЃРµ С‡РµСЂРµРґРѕРІР°РЅРёСЏ РЅР° РѕРґРЅСѓ СЃС‚СЂРѕРєСѓ РІРЅРёР·
+                        $counter[$key] = 1; // сдвигаем все чередования на одну строку вниз
                     }
                 } else {
                     $calculate = $value;
@@ -155,7 +155,7 @@ class GameSeriesCalculator
 
 
     /**
-     * РЎРµСЂРёРё Р±РµР· РЅРёС‡СЊРёС…
+     * Серии без ничьих
      */
     private function _seriesNonDraw(GameStat $gameStat)
     {
@@ -163,7 +163,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * СЃРµСЂРёРё РЅРёС‡СЊРё РїРѕРґСЂСЏРґ
+     * серии ничьи подряд
      */
     private function _seriesDraw(GameStat $gameStat)
     {
@@ -171,7 +171,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕР»СЊРєРѕ РїРѕР±РµРґС‹ РїРѕРґСЂСЏРґ
+     * только победы подряд
      */
     private function _seriesWin(GameStat $gameStat)
     {
@@ -179,7 +179,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РЅРµ РїСЂРѕРёРіСЂР°С‚СЊ РїРѕРґСЂСЏРґ
+     * не проиграть подряд
      */
     private function _seriesNonLost(GameStat $gameStat)
     {
@@ -187,7 +187,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РЅРµ РІС‹РёРіСЂР°С‚СЊ РїРѕРґСЂСЏРґ
+     * не выиграть подряд
      */
     private function _seriesNonWin(GameStat $gameStat)
     {
@@ -195,7 +195,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РїСЂРѕРёРіСЂР°С‚СЊ РїРѕРґСЂСЏРґ
+     * проиграть подряд
      */
     private function _seriesLost(GameStat $gameStat)
     {
@@ -203,7 +203,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 1.5
+     * тотал больше подряд 1.5
      */
     private function _seriesTotalMore15(GameStat $gameStat)
     {
@@ -211,7 +211,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 1.5
+     * тотал меньше подряд 1.5
      */
     private function _seriesTotalLess15(GameStat $gameStat)
     {
@@ -219,7 +219,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 1.5
+     * тотал чередование 1.5
      */
     private function _rotationTotal15(GameStat $gameStat)
     {
@@ -227,7 +227,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 2.5
+     * тотал больше подряд 2.5
      */
     private function _seriesTotalMore25(GameStat $gameStat)
     {
@@ -235,7 +235,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 2.5
+     * тотал меньше подряд 2.5
      */
     private function _seriesTotalLess25(GameStat $gameStat)
     {
@@ -243,7 +243,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 2.5
+     * тотал чередование 2.5
      */
     private function _rotationTotal25(GameStat $gameStat)
     {
@@ -251,7 +251,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 3.5
+     * тотал больше подряд 3.5
      */
     private function _seriesTotalMore35(GameStat $gameStat)
     {
@@ -259,7 +259,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 3.5
+     * тотал меньше подряд 3.5
      */
     private function _seriesTotalLess35(GameStat $gameStat)
     {
@@ -267,7 +267,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 3.5
+     * тотал чередование 3.5
      */
     private function _rotationTotal35(GameStat $gameStat)
     {
@@ -275,7 +275,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 4.5
+     * тотал больше подряд 4.5
      */
     private function _seriesTotalMore45(GameStat $gameStat)
     {
@@ -283,7 +283,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 4.5
+     * тотал меньше подряд 4.5
      */
     private function _seriesTotalLess45(GameStat $gameStat)
     {
@@ -291,7 +291,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 4.5
+     * тотал чередование 4.5
      */
     private function _rotationTotal45(GameStat $gameStat)
     {
@@ -299,7 +299,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 5.5
+     * тотал больше подряд 5.5
      */
     private function _seriesTotalMore55(GameStat $gameStat)
     {
@@ -307,7 +307,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 5.5
+     * тотал меньше подряд 5.5
      */
     private function _seriesTotalLess55(GameStat $gameStat)
     {
@@ -315,7 +315,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 5.5
+     * тотал чередование 5.5
      */
     private function _rotationTotal55(GameStat $gameStat)
     {
@@ -323,7 +323,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ РїРѕРґСЂСЏРґ 6.5
+     * тотал больше подряд 6.5
      */
     private function _seriesTotalMore65(GameStat $gameStat)
     {
@@ -331,7 +331,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ РїРѕРґСЂСЏРґ 6.5
+     * тотал меньше подряд 6.5
      */
     private function _seriesTotalLess65(GameStat $gameStat)
     {
@@ -339,7 +339,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‚РѕС‚Р°Р» С‡РµСЂРµРґРѕРІР°РЅРёРµ 6.5
+     * тотал чередование 6.5
      */
     private function _rotationTotal65(GameStat $gameStat)
     {
@@ -347,7 +347,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‡РµС‚ РїРѕРґСЂСЏРґ
+     * чет подряд
      */
     private function _seriesEven(GameStat $gameStat)
     {
@@ -355,7 +355,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РЅРµС‡РµС‚ РїРѕРґСЂСЏРґ
+     * нечет подряд
      */
     private function _seriesOdd(GameStat $gameStat)
     {
@@ -363,7 +363,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * С‡РµС‚/РЅРµС‡РµС‚ С‡РµСЂРµРґРѕРІР°РЅРёРµ
+     * чет/нечет чередование
      */
     private function _rotationEvenOdd(GameStat $gameStat)
     {
@@ -371,7 +371,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РЅРёС‡СЊСЏ/СЂРµР·СѓР»СЊС‚Р°С‚ С‡РµСЂРµРґРѕРІР°РЅРёРµ
+     * ничья/результат чередование
      */
     private function _rotationDrawResult(GameStat $gameStat)
     {
@@ -379,7 +379,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РЅРёС‡СЊСЏ/РїРѕР±РµРґР° С‡РµСЂРµРґРѕРІР°РЅРёРµ
+     * ничья/победа чередование
      */
     private function _rotationDrawWin(GameStat $gameStat)
     {
@@ -387,7 +387,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РЅРёС‡СЊСЏ/РїСЂРѕРёРіСЂР°Р»Рё С‡РµСЂРµРґРѕРІР°РЅРёРµ
+     * ничья/проиграли чередование
      */
     private function _rotationDrawLost(GameStat $gameStat)
     {
@@ -395,7 +395,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ 2,5 Рё С‡РµС‚ РїРѕРґСЂСЏРґ
+     * Одновременно тотал больше 2,5 и чет подряд
      */
     private function _seriesTotalMore25AndEven(GameStat $gameStat)
     {
@@ -403,7 +403,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‚РѕС‚Р°Р» Р±РѕР»СЊС€Рµ 2,5 Рё РЅРµС‡РµС‚ РїРѕРґСЂСЏРґ
+     * Одновременно тотал больше 2,5 и нечет подряд
      */
     private function _seriesTotalMore25AndOdd(GameStat $gameStat)
     {
@@ -411,7 +411,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ 2,5 Рё С‡РµС‚ РїРѕРґСЂСЏРґ
+     * Одновременно тотал меньше 2,5 и чет подряд
      */
     private function _seriesTotalLess25AndEven(GameStat $gameStat)
     {
@@ -419,7 +419,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‚РѕС‚Р°Р» РјРµРЅСЊС€Рµ 2,5 Рё РЅРµС‡РµС‚ РїРѕРґСЂСЏРґ
+     * Одновременно тотал меньше 2,5 и нечет подряд
      */
     private function _seriesTotalLess25AndOdd(GameStat $gameStat)
     {
@@ -428,7 +428,7 @@ class GameSeriesCalculator
 
 
     /**
-     * РѕР±Рµ Р·Р°Р±РёР»Рё РїРѕРґСЂСЏРґ
+     * обе забили подряд
      */
     private function _seriesAllTeamScored(GameStat $gameStat)
     {
@@ -437,7 +437,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р·Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР°
+     * забила только одна
      */
     private function _seriesOneTeamScored(GameStat $gameStat)
     {
@@ -446,7 +446,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РЅРёРєС‚Рѕ РЅРµ Р·Р°Р±РёР»
+     * никто не забил
      */
     private function _seriesNoneTeamScored(GameStat $gameStat)
     {
@@ -455,7 +455,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р—Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР° РёР»Рё РЅРёРєС‚Рѕ РЅРµР·Р°Р±РёР»
+     * Забила только одна или никто незабил
      */
     private function _seriesOneOrNoneTeamScored(GameStat $gameStat)
     {
@@ -464,7 +464,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р·Р°Р±РёР»Р° РѕРґРЅР°/РѕР±Рµ С‡РµСЂРµРґРѕРІР°РЅРёРµ
+     * забила одна/обе чередование
      */
     private function _rotationAllOneTeamScored(GameStat $gameStat)
     {
@@ -480,7 +480,7 @@ class GameSeriesCalculator
 
 
     /**
-     * РћР±Рµ Р·Р°Р±РёР»Рё + РўР‘ 2,5
+     * Обе забили + ТБ 2,5
      */
     private function _seriesAllTeamScoredAndTotalMore25(GameStat $gameStat)
     {
@@ -489,7 +489,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РћР±Рµ Р·Р°Р±РёР»Рё + РўРњ 2,5
+     * Обе забили + ТМ 2,5
      */
     private function _seriesAllTeamScoredAndTotalLess25(GameStat $gameStat)
     {
@@ -498,7 +498,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р—Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР° + РўР‘ 2,5
+     * Забила только одна + ТБ 2,5
      */
     private function _seriesOneTeamScoredAndTotalMore25(GameStat $gameStat)
     {
@@ -507,7 +507,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р—Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР° + РўРњ 2,5
+     * Забила только одна + ТМ 2,5
      */
     private function _seriesOneTeamScoredAndTotalLess25(GameStat $gameStat)
     {
@@ -518,7 +518,7 @@ class GameSeriesCalculator
 
 
     /**
-     * РћР±Рµ Р·Р°Р±РёР»Рё + РўР‘ 3,5
+     * Обе забили + ТБ 3,5
      */
     private function _seriesAllTeamScoredAndTotalMore35(GameStat $gameStat)
     {
@@ -527,7 +527,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РћР±Рµ Р·Р°Р±РёР»Рё + РўРњ 3,5
+     * Обе забили + ТМ 3,5
      */
     private function _seriesAllTeamScoredAndTotalLess35(GameStat $gameStat)
     {
@@ -536,7 +536,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р—Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР° + РўР‘ 3,5
+     * Забила только одна + ТБ 3,5
      */
     private function _seriesOneTeamScoredAndTotalMore35(GameStat $gameStat)
     {
@@ -545,7 +545,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р—Р°Р±РёР»Р° С‚РѕР»СЊРєРѕ РѕРґРЅР° + РўРњ 3,5
+     * Забила только одна + ТМ 3,5
      */
     private function _seriesOneTeamScoredAndTotalLess35(GameStat $gameStat)
     {
@@ -560,7 +560,7 @@ class GameSeriesCalculator
 
 
     /**
-     * РўРѕС‚Р°Р» = 1
+     * Тотал = 1
      */
     private function _seriesTotal1(GameStat $gameStat)
     {
@@ -568,7 +568,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РўРѕС‚Р°Р» = 2
+     * Тотал = 2
      */
     private function _seriesTotal2(GameStat $gameStat)
     {
@@ -576,7 +576,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РўРѕС‚Р°Р» = 3
+     * Тотал = 3
      */
     private function _seriesTotal3(GameStat $gameStat)
     {
@@ -584,7 +584,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РўРѕС‚Р°Р» = 4
+     * Тотал = 4
      */
     private function _seriesTotal4(GameStat $gameStat)
     {
@@ -592,7 +592,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РўРѕС‚Р°Р» = 5
+     * Тотал = 5
      */
     private function _seriesTotal5(GameStat $gameStat)
     {
@@ -600,7 +600,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РўРѕС‚Р°Р» = 6
+     * Тотал = 6
      */
     private function _seriesTotal6(GameStat $gameStat)
     {
@@ -608,7 +608,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РўРѕС‚Р°Р» = 7
+     * Тотал = 7
      */
     private function _seriesTotal7(GameStat $gameStat)
     {
@@ -616,7 +616,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ РЅРµС‡РµС‚ Рё РїРѕР±РµРґР° РїРѕРґСЂСЏРґ
+     * Одновременно нечет и победа подряд
      */
     private function _seriesOddAndWin(GameStat $gameStat)
     {
@@ -624,7 +624,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ РЅРµС‡РµС‚ Рё РїРѕСЂР°Р¶РµРЅРёРµ РїРѕРґСЂСЏРґ
+     * Одновременно нечет и поражение подряд
      */
     private function _seriesOddAndLost(GameStat $gameStat)
     {
@@ -632,7 +632,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‡РµС‚ Рё РїРѕР±РµРґР° РїРѕРґСЂСЏРґ
+     * Одновременно чет и победа подряд
      */
     private function _seriesEvenAndWin(GameStat $gameStat)
     {
@@ -640,7 +640,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РћРґРЅРѕРІСЂРµРјРµРЅРЅРѕ С‡РµС‚ Рё РїРѕСЂР°Р¶РµРЅРёРµ РїРѕРґСЂСЏРґ
+     * Одновременно чет и поражение подряд
      */
     private function _seriesEvenAndLost(GameStat $gameStat)
     {
@@ -648,7 +648,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РЎСѓРјРјР° РјСЏС‡РµР№ 0-1 РїРѕРґСЂСЏРґ
+     * Сумма мячей 0-1 подряд
      */
     private function _seriesTotal0Or1(GameStat $gameStat)
     {
@@ -656,7 +656,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РЎСѓРјРјР° РјСЏС‡РµР№ 2-3 РїРѕРґСЂСЏРґ
+     * Сумма мячей 2-3 подряд
      */
     private function _seriesTotal2Or3(GameStat $gameStat)
     {
@@ -664,7 +664,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * РЎСѓРјРјР° РјСЏС‡РµР№ 4 Рё Р±РѕР»СЊС€Рµ
+     * Сумма мячей 4 и больше
      */
     private function _seriesTotal4OrMore(GameStat $gameStat)
     {
@@ -672,7 +672,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ +1 РїРѕРґСЂСЏРґ
+     * Разница мячей +1 подряд
      */
     private function _seriesDiff1(GameStat $gameStat)
     {
@@ -680,7 +680,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ -1 РїРѕРґСЂСЏРґ
+     * Разница мячей -1 подряд
      */
     private function _seriesDiffMinus1(GameStat $gameStat)
     {
@@ -688,7 +688,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ РјРѕРґСѓР»СЊ 1 РїРѕРґСЂСЏРґ
+     * Разница мячей модуль 1 подряд
      */
     private function _seriesDiff1Abs(GameStat $gameStat)
     {
@@ -696,7 +696,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ +2 РїРѕРґСЂСЏРґ
+     * Разница мячей +2 подряд
      */
     private function _seriesDiff2(GameStat $gameStat)
     {
@@ -704,7 +704,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ -2 РїРѕРґСЂСЏРґ
+     * Разница мячей -2 подряд
      */
     private function _seriesDiffMinus2(GameStat $gameStat)
     {
@@ -712,7 +712,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ РјРѕРґСѓР»СЊ 2 РїРѕРґСЂСЏРґ
+     * Разница мячей модуль 2 подряд
      */
     private function _seriesDiff2Abs(GameStat $gameStat)
     {
@@ -720,7 +720,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ +3 РїРѕРґСЂСЏРґ
+     * Разница мячей +3 подряд
      */
     private function _seriesDiff3(GameStat $gameStat)
     {
@@ -728,7 +728,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ -3 РїРѕРґСЂСЏРґ
+     * Разница мячей -3 подряд
      */
     private function _seriesDiffMinus3(GameStat $gameStat)
     {
@@ -736,7 +736,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р Р°Р·РЅРёС†Р° РјСЏС‡РµР№ РјРѕРґСѓР»СЊ 3 РїРѕРґСЂСЏРґ
+     * Разница мячей модуль 3 подряд
      */
     private function _seriesDiff3Abs(GameStat $gameStat)
     {
@@ -744,7 +744,7 @@ class GameSeriesCalculator
     }
 
     /**
-     * Р§РµСЂРµРґРѕРІР°РЅРёРµ РїРѕР±РµРґР°/РїРѕСЂР°Р¶РµРЅРёРµ
+     * Чередование победа/поражение
      */
     private function _rotationWinLost(GameStat $gameStat)
     {

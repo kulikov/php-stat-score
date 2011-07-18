@@ -19,7 +19,7 @@ require_once 'lib/util/threads/ThreadManager.php';
 require_once 'lib/util/FileCacher.php';
 
 
-/* Ð²Ñ‹Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð¿Ñ€Ð¾Ð²Ð°Ð¹Ð´ÐµÑ€Ð° Ð¸ÑÑ…Ð¾Ð´Ð½Ñ‹Ñ… Ð´Ð°Ð½Ð½Ñ‹Ñ… */
+/* âûáèðàåì ïðîâàéäåðà èñõîäíûõ äàííûõ */
 if (stristr($_SERVER['QUERY_STRING'], 'parimatch.com')) {
     $provider = new ParimatchProvider();
 } else {
@@ -31,7 +31,7 @@ $dataLoader = DataLoader::factory($provider);
 
 
 /**
- * Ð‘ÑƒÐ´ÐµÐ¼ ÐºÐµÑˆÐ¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ñ€ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ñ‹ Ð½Ð° Ñ‡Ð°Ñ
+ * Áóäåì êåøèðîâàòü ðåçóëüòàòû íà ÷àñ
  */
 $dataLoader->setCacher(FileCacher::factory(array(
     'cacheDir' => dirname(__FILE__) . '/cache/',
@@ -43,7 +43,7 @@ $dataLoader->setCacher(FileCacher::factory(array(
 
 
 /**
- * ÐŸÐ¾ÑÐ»Ðµ Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ¸ Ð²ÑÐµÑ… Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð±ÑƒÐ´ÐµÐ¼ Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ñ‚ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñƒ Ð´Ð»Ñ ÑÐºÑÐµÐ»Ñ ÑÐ¾ Ð²ÑÐµÐ¼Ð¸ Ñ€Ð°ÑÑ‡ÐµÑ‚Ð°Ð¼Ð¸
+ * Ïîñëå çàãðóçêè âñåõ äàííûõ áóäåì âûâîäèò òàáëèöó äëÿ ýêñåëÿ ñî âñåìè ðàñ÷åòàìè
  */
 $dataLoader->addCompleteHandler(
     ResultHandler::factory(new DisplayXlsTableStrategy($extraParams), ChampionshipBuilder::getInstance())
@@ -51,7 +51,7 @@ $dataLoader->addCompleteHandler(
 
 
 /**
- * Ð—Ð°Ð³Ñ€ÑƒÐ·ÐºÐ° Ð´Ð°Ð½Ð½Ñ‹Ñ… Ð±ÑƒÐ´ÐµÑ‚ Ð¿Ñ€Ð¾Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ Ð¼ÑƒÐ»ÑŒÑ‚Ð¸Ð¿Ñ€Ð¾Ñ†ÐµÑÑÐ¾Ñ€Ð½Ð¾ â€”Â ÐºÐ¾Ð½Ñ„Ð¸Ð³ÑƒÑ€Ð¸Ð¼ Ñ‚Ñ€ÐµÐ´ Ð¼ÐµÐ½ÐµÐ´Ð¶ÐµÑ€
+ * Çàãðóçêà äàííûõ áóäåò ïðîõîäèòü ìóëüòèïðîöåññîðíî — êîíôèãóðèì òðåä ìåíåäæåð
  */
 $threadManager = ThreadManager::factory(array(
     'scriptPath' => dirname(__FILE__) . '/worker.php',
@@ -61,6 +61,6 @@ $threadManager = ThreadManager::factory(array(
 
 
 /**
- * Ð—Ð°Ð¿ÑƒÑÐºÐ°ÐµÐ¼ Ñ€Ð°ÑÑ‡ÐµÑ‚
+ * Çàïóñêàåì ðàñ÷åò
  */
 $dataLoader->loadChampionship($requestUrl, $threadManager);
