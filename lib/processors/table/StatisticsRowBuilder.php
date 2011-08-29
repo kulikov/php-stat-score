@@ -178,18 +178,12 @@ class StatisticsRowBuilder
 
     private function _createTeamScoredAndTotal25(Game $game, GameStat $gameStat)
     {
-        $v1    = $game->getGuestTeamScore();
-        $v2    = $game->getHomeTeamScore();
-        $total = $gameStat->totalMore(2.5);
-        return array('value' => ($v1 && $v2 ? 'Обе команды забили' : ($v1 || $v2 ? 'Забила только одна' : 'Никто не забил')) . ($v1 || $v2 ? ' + ' . ($total ? 'ТБ' : 'ТМ') : ''), 'title' => 'Команды забили + тотал 2,5', 'style' => 'background: '. ($v1 && $v2 ? 'lime' : ($v1 || $v2 ? 'red' : '#3377FF')) .';');
+        return $this->_getTeamScoredAndTotal($game, $gameStat, 2.5);
     }
-
+    
     private function _createTeamScoredAndTotal35(Game $game, GameStat $gameStat)
     {
-        $v1    = $game->getGuestTeamScore();
-        $v2    = $game->getHomeTeamScore();
-        $total = $gameStat->totalMore(3.5);
-        return array('value' => ($v1 && $v2 ? 'Обе команды забили' : ($v1 || $v2 ? 'Забила только одна' : 'Никто не забил')) . ($v1 || $v2 ? ' + ' . ($total ? 'ТБ' : 'ТМ') : ''), 'title' => 'Команды забили + тотал 3,5', 'style' => 'background: '. ($v1 && $v2 ? 'lime' : ($v1 || $v2 ? 'red' : '#3377FF')) .';');
+        return $this->_getTeamScoredAndTotal($game, $gameStat, 3.5);
     }
 
     private function _createTotal1(Game $game, GameStat $gameStat)
@@ -253,6 +247,13 @@ class StatisticsRowBuilder
     	$colors = array(0 => '#3377FF', 1 => 'lime', 2 => 'magenta', 3 => 'aqua', 4 => 'yellow',
     	               -1 => "#CCFFCC; border: black 2px dotted", -2 => '#FF99CC; border: black 2px dotted', -3 => '#CCFFFF; border: black 2px dotted', -4 => '#FFFF99; border: black 2px dotted');
         return $colors[intval($value)];
+    }
+    
+    private function _getTeamScoredAndTotal(Game $game, GameStat $gameStat, $totalValue)
+    {
+        $sum   = ($game->getGuestTeamScore() ? 1 : 0) + ($game->getHomeTeamScore() ? 1 : 0);
+        $total = $gameStat->totalMore($totalValue);
+        return array('value' => ($sum == 2 ? 'Обе забили' : ($sum == 1 ? 'Забила только одна' : 'Никто не забил')) . ($sum ? ' + ' . ($total ? 'ТБ' : 'ТМ') : ''), 'title' => 'Команды забили + тотал ' . str_replace('.', ',', $totalValue), 'style' => 'background: '. ($sum == 2 && $total ? 'lime' : ($sum == 1 && $total ? 'red' : ($sum == 1 && !$total ? 'magenta' : ($sum == 2 && !$total ? 'aqua' : '#3377FF')))) .';');
     }
 
 
