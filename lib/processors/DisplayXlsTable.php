@@ -57,6 +57,8 @@ class DisplayXlsTableStrategy implements ProcessorInterface
             }
         }
 
+        header('Content-type: text/html; charset=windows-1251');
+
         print '
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1251"/>
         <style>
