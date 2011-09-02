@@ -60,7 +60,13 @@ $threadManager = ThreadManager::factory(array(
 ));
 
 
-/**
- * Запускаем расчет
- */
-$dataLoader->loadChampionship($requestUrl, $threadManager);
+try {    /**
+	 * Запускаем расчет
+	 */
+	$dataLoader->loadChampionship($requestUrl, $threadManager);} catch (Exception $e) {
+	print '<pre>';    print $e->getMessage();
+    print "\n\n";
+    print $e->getTraceAsString();
+    print "\n\n";
+    print_r(array($requestUrl, $extraParams));    print "\n\n";
+    print_r($_SERVER);}
